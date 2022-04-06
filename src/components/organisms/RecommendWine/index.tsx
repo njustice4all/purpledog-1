@@ -4,63 +4,56 @@ import styled from 'styled-components';
 import Flicking from '@egjs/react-flicking';
 
 import { RootState } from 'modules/rootState';
-import { actionGetRecommendWine } from 'modules/recommendWine/recommendWine.actions';
+import { actionGetWine } from 'modules/wine/wine.actions';
 import Dot from 'components/atoms/Dot';
+import Title from 'components/atoms/Title';
+import Description from 'components/atoms/Description';
 
 export default function RecommendWine() {
   const dispatch = useDispatch();
   const text = useSelector((state: RootState) => state.text);
-  const { isFetching, results } = useSelector((state: RootState) => state.recommendWine);
-  const obj = text['PERSONAL_RECOMMEND_DESCRIPTON'];
+  const { isFetching, subscriptionWineRecommend } = useSelector((state: RootState) => state.wine);
 
   useEffect(() => {
-    dispatch(actionGetRecommendWine.request());
+    dispatch(actionGetWine.request({ name: 'subscriptionWineRecommend' }));
   }, [dispatch]);
+
+  const title = text['PERSONAL_RECOMMEND_TITLE'];
+  const description = text['PERSONAL_RECOMMEND_DESCRIPTON'];
 
   return (
     <>
-      <Title>김새콤달콤님께 맞는 와인</Title>
-      <Description>{obj ? obj.content : '...'}</Description>
+      <Title>{title ? title.content : '...'}</Title>
+      <Description>{description ? description.content : '...'}</Description>
       <Wrapper>
         <Flicking
           bound
           align={{ camera: '3.5%', panel: '10px' }}
           className="RecommendWine-viewport"
         >
-          {results.map(({ salesPrice, englishName, countryName, thumbnailImageUrl }, idx) => (
-            <Card key={idx}>
-              <Box>
-                <Image src={thumbnailImageUrl} />
-              </Box>
-              <Top>
-                {countryName} <Dot /> 제로와인
-              </Top>
-              <Name>{englishName}</Name>
-              <Price>39,500원</Price>
-              <Discount>
-                <Rate>12%</Rate>
-                <Original>45,500원</Original>
-              </Discount>
-            </Card>
-          ))}
+          {subscriptionWineRecommend.map(
+            ({ salesPrice, englishName, countryName, thumbnailImageUrl }, idx) => (
+              <Card key={idx}>
+                <Box>
+                  <Image src={thumbnailImageUrl} />
+                </Box>
+                <Top>
+                  {countryName} <Dot /> 제로와인
+                </Top>
+                <Name>{englishName}</Name>
+                <Price>39,500원</Price>
+                <Discount>
+                  <Rate>12%</Rate>
+                  <Original>45,500원</Original>
+                </Discount>
+              </Card>
+            )
+          )}
         </Flicking>
       </Wrapper>
     </>
   );
 }
-
-const Title = styled.div`
-  font-size: 18px;
-  font-weight: bold;
-  letter-spacing: -0.18px;
-`;
-
-const Description = styled.div`
-  font-size: 13px;
-  letter-spacing: -0.13px;
-  color: #333;
-  margin-top: 5px;
-`;
 
 const Wrapper = styled.div`
   margin: 0 -15px;

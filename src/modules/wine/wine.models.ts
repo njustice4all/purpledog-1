@@ -1,10 +1,5 @@
 import { CommonResponse } from 'model';
 
-export interface IRecommendWineState {
-  isFetching: boolean;
-  results: Wine[];
-}
-
 type Wine = {
   productId: number;
   useYn: string;
@@ -39,6 +34,17 @@ type Wine = {
   productOnSales: boolean;
 };
 
-export interface ResponseRecommendWine extends CommonResponse {
+export interface IWineState {
+  isFetching: boolean;
+  subscriptionWineRecommend: Wine[];
+  selectTimeSaleWine: Wine[];
+  selectPopularWine: Wine[];
+}
+
+export interface RequestWine {
+  name: 'subscriptionWineRecommend' | 'selectTimeSaleWine' | 'selectPopularWine';
+}
+
+export interface ResponseWine extends CommonResponse {
   results: Wine[];
 }

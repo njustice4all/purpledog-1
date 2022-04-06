@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
+import { actionGetText } from 'modules/text/text.actions';
 import Header from 'components/molecules/Header';
 import Layout from 'components/organisms/Layout';
 import MainBanner from 'components/molecules/Banner/MainBanner';
 import RecommendWine from 'components/organisms/RecommendWine';
-import { actionGetText } from 'modules/text/text.actions';
+import TimeDeal from 'components/organisms/TimeDeal';
 
 export default function HomeTemplate() {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ export default function HomeTemplate() {
       <MainBanner />
       <Content>
         <RecommendWine />
+        <TimeDeal />
       </Content>
     </Layout>
   );

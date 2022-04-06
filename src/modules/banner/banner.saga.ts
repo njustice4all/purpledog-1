@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { takeLatest, all, fork, put } from 'redux-saga/effects';
+import { all, fork, put, takeEvery } from 'redux-saga/effects';
 
 import Http from '@http';
 import { ResponseBanner } from './banner.models';
@@ -23,7 +23,7 @@ function* workerGetBanner(action: ReturnType<typeof actionGetBanner.request>) {
 }
 
 function* watchGetBanner() {
-  yield takeLatest(GET_BANNER_REQUEST, workerGetBanner);
+  yield takeEvery(GET_BANNER_REQUEST, workerGetBanner);
 }
 
 export default function* bannerSaga() {
