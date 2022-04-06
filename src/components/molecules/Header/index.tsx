@@ -18,6 +18,10 @@ export default function Header() {
 }
 
 const Container = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 2;
   display: flex;
   justify-content: space-between;
   padding: 10px 15px;
