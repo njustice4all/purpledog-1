@@ -16,6 +16,10 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     position: relative;
   }
+
+  .RecommendWine-viewport {
+    padding: 0 15px;
+  }
 `;
 
 export default function Layout({ children }: ILayout) {
