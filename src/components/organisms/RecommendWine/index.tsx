@@ -5,9 +5,9 @@ import Flicking from '@egjs/react-flicking';
 
 import { RootState } from 'modules/rootState';
 import { actionGetWine } from 'modules/wine/wine.actions';
-import Dot from 'components/atoms/Dot';
 import Title from 'components/atoms/Title';
 import Description from 'components/atoms/Description';
+import CountryLabel from 'components/atoms/CountryLabel';
 
 export default function RecommendWine() {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ export default function RecommendWine() {
                   <Image src={thumbnailImageUrl} />
                 </Box>
                 <Top>
-                  {countryName} <Dot /> 제로와인
+                  <CountryLabel countryName={countryName} type="제로와인" />
                 </Top>
                 <Name>{englishName}</Name>
                 <Price>39,500원</Price>

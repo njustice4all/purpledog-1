@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { takeLatest, all, fork, put } from 'redux-saga/effects';
+import { all, fork, put, takeEvery } from 'redux-saga/effects';
 
 import Http from '@http';
 import { actionGetWine, GET_WINE_REQUEST } from './wine.actions';
@@ -21,7 +21,7 @@ function* workerGetWine(action: ReturnType<typeof actionGetWine.request>) {
 }
 
 function* watchGetWine() {
-  yield takeLatest(GET_WINE_REQUEST, workerGetWine);
+  yield takeEvery(GET_WINE_REQUEST, workerGetWine);
 }
 
 export default function* wineSaga() {
