@@ -17,11 +17,12 @@ export default function MainBanner() {
 
   return (
     <Flicking>
-      {MAIN_TOP.map((v, idx) => (
+      {MAIN_TOP.length === 0 && <Empty />}
+      {MAIN_TOP.map(({ thumbnailImageUrl, description }, idx) => (
         <Inner key={idx}>
-          <Image src={v.thumbnailImageUrl} alt="" />
+          <Image src={thumbnailImageUrl} alt={description} />
           <TextArea>
-            <Title>{v.description}</Title>
+            <Title>{description}</Title>
             <Tag>#까베네쇼비뇽 #레드</Tag>
             <Track />
           </TextArea>
@@ -30,6 +31,12 @@ export default function MainBanner() {
     </Flicking>
   );
 }
+
+const Empty = styled.div`
+  width: 375px;
+  height: 380px;
+  background: rgba(0, 0, 0, 0.5);
+`;
 
 const Image = styled.img`
   width: 375px;
