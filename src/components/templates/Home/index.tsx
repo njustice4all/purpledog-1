@@ -11,6 +11,7 @@ import TimeDeal from 'components/organisms/TimeDeal';
 import { actionGetBanner } from 'modules/banner/banner.actions';
 import WideBanner from 'components/molecules/Banner/WideBanner';
 import { RootState } from 'modules/rootState';
+import WineByCountry from 'components/organisms/WineByCountry';
 
 export default function HomeTemplate() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ export default function HomeTemplate() {
         <SubBannerWrapper>
           <WideBanner url={banner?.thumbnailImageUrl} label={['퍼플독과 함께한', '인증샷 투어']} />
         </SubBannerWrapper>
+        <WineByCountry />
       </Content>
     </Layout>
   );
@@ -49,5 +51,5 @@ const Content = styled.div`
 `;
 
 const SubBannerWrapper = styled.div`
-  margin-top: 35px;
+  margin: 35px 0;
 `;
