@@ -12,6 +12,7 @@ import { actionGetBanner } from 'modules/banner/banner.actions';
 import WideBanner from 'components/molecules/Banner/WideBanner';
 import { RootState } from 'modules/rootState';
 import WineByCountry from 'components/organisms/WineByCountry';
+import WineByCollect from 'components/organisms/WineByCollect';
 
 export default function HomeTemplate() {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ export default function HomeTemplate() {
           <WideBanner url={banner?.thumbnailImageUrl} label={['퍼플독과 함께한', '인증샷 투어']} />
         </SubBannerWrapper>
         <WineByCountry />
+        <WineByCollect />
       </Content>
     </Layout>
   );
