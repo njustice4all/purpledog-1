@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { actionGetText } from 'modules/text/text.actions';
@@ -8,13 +8,20 @@ import Layout from 'components/organisms/Layout';
 import MainBanner from 'components/molecules/Banner/MainBanner';
 import RecommendWine from 'components/organisms/RecommendWine';
 import TimeDeal from 'components/organisms/TimeDeal';
+import { actionGetBanner } from 'modules/banner/banner.actions';
+import WideBanner from 'components/molecules/Banner/WideBanner';
+import { RootState } from 'modules/rootState';
 
 export default function HomeTemplate() {
   const dispatch = useDispatch();
+  const { MAIN_SUB_2 } = useSelector((state: RootState) => state.banner);
 
   useEffect(() => {
     dispatch(actionGetText.request());
+    dispatch(actionGetBanner.request({ bannerCodeId: 'MAIN_SUB_2' }));
   }, [dispatch]);
+
+  const banner = MAIN_SUB_2[0];
 
   return (
     <Layout>
@@ -23,6 +30,9 @@ export default function HomeTemplate() {
       <Content>
         <RecommendWine />
         <TimeDeal />
+        <SubBannerWrapper>
+          <WideBanner url={banner?.thumbnailImageUrl} label={['퍼플독과 함께한', '인증샷 투어']} />
+        </SubBannerWrapper>
       </Content>
     </Layout>
   );
@@ -36,4 +46,8 @@ const Content = styled.div`
   border-top-right-radius: 15px;
   padding: 30px 15px;
   transform: translateY(-15px);
+`;
+
+const SubBannerWrapper = styled.div`
+  margin-top: 35px;
 `;
