@@ -13,6 +13,7 @@ import WideBanner from 'components/molecules/Banner/WideBanner';
 import { RootState } from 'modules/rootState';
 import WineByCountry from 'components/organisms/WineByCountry';
 import WineByCollect from 'components/organisms/WineByCollect';
+import WineByPopular from 'components/organisms/WineByPopular';
 
 export default function HomeTemplate() {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ export default function HomeTemplate() {
         </SubBannerWrapper>
         <WineByCountry />
         <WineByCollect />
+        <WineByPopular />
       </Content>
     </Layout>
   );

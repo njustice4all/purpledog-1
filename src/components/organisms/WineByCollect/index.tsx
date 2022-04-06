@@ -48,6 +48,7 @@ const Row = styled.div`
 const Wrap = styled.div`
   position: relative;
   margin-top: 15px;
+  margin-bottom: 35px;
 `;
 
 const Image = styled.img`

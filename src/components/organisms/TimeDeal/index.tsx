@@ -9,6 +9,7 @@ import { actionGetBanner } from 'modules/banner/banner.actions';
 import WideBanner from 'components/molecules/Banner/WideBanner';
 import { actionGetWine } from 'modules/wine/wine.actions';
 import CountryLabel from 'components/atoms/CountryLabel';
+import { numberWithComma } from 'utils';
 
 export default function TimeDeal() {
   const dispatch = useDispatch();
@@ -40,13 +41,11 @@ export default function TimeDeal() {
           </Left>
           <Right>
             <CountryLabel countryName={wine.countryName} type="레드와인" />
-            <Name>
-              {wine.englishName} {wine.englishName} {wine.englishName}
-            </Name>
-            <Price>39,900원</Price>
+            <Name>{wine.name}</Name>
+            <Price>{numberWithComma(wine.discountPrice)}원</Price>
             <Discount>
-              <Rate>12%</Rate>
-              <Original>45,500원</Original>
+              <Rate>{wine.timeSaleDiscountPercent}%</Rate>
+              <Original>{numberWithComma(wine.salesPrice)}원</Original>
             </Discount>
             <TimeAgo>10:37:02 남음</TimeAgo>
           </Right>
@@ -85,6 +84,7 @@ const Image = styled.img`
 
 const Name = styled.div`
   font-size: 13px;
+  height: 31px;
   letter-spacing: -0.13px;
   overflow: hidden;
   text-overflow: ellipsis;

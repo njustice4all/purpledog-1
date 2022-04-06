@@ -1,6 +1,6 @@
 import { CommonResponse } from 'model';
 
-type Wine = {
+interface Wine {
   productId: number;
   useYn: string;
   viewYn: string;
@@ -32,13 +32,33 @@ type Wine = {
   styleNames: string;
   dryNames: string;
   productOnSales: boolean;
-};
+}
+
+interface TimeSaleWine extends Wine {
+  name: string;
+  discountPercent: number;
+  discountPrice: number;
+  timeSaleDiscountPercent: number;
+  timeSalePrice: number;
+  timeSaleStartDate: string;
+  timeSaleEndDate: string;
+  subscriptionYn: string;
+}
+
+interface PopularWine extends Wine {
+  name: string;
+  wineTypeName: string;
+  grapeName: string;
+  grapeEnglishName: string;
+  originName: string;
+  wineTypeCode: string;
+}
 
 export interface IWineState {
   isFetching: boolean;
   subscriptionWineRecommend: Wine[];
-  selectTimeSaleWine: Wine[];
-  selectPopularWine: Wine[];
+  selectTimeSaleWine: TimeSaleWine[];
+  selectPopularWine: PopularWine[];
 }
 
 export interface RequestWine {
@@ -46,5 +66,5 @@ export interface RequestWine {
 }
 
 export interface ResponseWine extends CommonResponse {
-  results: Wine[];
+  results: Wine[] | TimeSaleWine[] | PopularWine[];
 }
