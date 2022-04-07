@@ -10,6 +10,7 @@ import WideBanner from 'components/molecules/Banner/WideBanner';
 import { actionGetWine } from 'modules/wine/wine.actions';
 import CountryLabel from 'components/atoms/CountryLabel';
 import { numberWithComma } from 'utils';
+import Countdown from 'components/atoms/Countdown';
 
 export default function TimeDeal() {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ export default function TimeDeal() {
               <Rate>{wine.timeSaleDiscountPercent}%</Rate>
               <Original>{numberWithComma(wine.salesPrice)}원</Original>
             </Discount>
-            <TimeAgo>{wine.timeSaleEndDate} 남음</TimeAgo>
+            <Countdown endDate={wine.timeSaleEndDate} />
           </Right>
         </Wrap>
       ))}
@@ -113,13 +114,4 @@ const Original = styled.div`
   color: #cbcbcb;
   text-decoration: line-through;
   margin-left: 5px;
-`;
-
-const TimeAgo = styled.div`
-  width: fit-content;
-  background-color: #ff0045;
-  color: #fff;
-  border-radius: 2px;
-  padding: 5px 4px;
-  font-size: 10px;
 `;
