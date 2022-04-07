@@ -1,6 +1,8 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 
+import Nav from 'components/molecules/Nav';
+
 interface ILayout {
   children?: React.ReactNode;
 }
@@ -27,6 +29,7 @@ export default function Layout({ children }: ILayout) {
     <>
       <GlobalStyle />
       {children}
+      <Nav />
     </>
   );
 }

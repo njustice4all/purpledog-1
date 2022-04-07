@@ -47,7 +47,7 @@ export default function TimeDeal() {
               <Rate>{wine.timeSaleDiscountPercent}%</Rate>
               <Original>{numberWithComma(wine.salesPrice)}원</Original>
             </Discount>
-            <TimeAgo>10:37:02 남음</TimeAgo>
+            <TimeAgo>{wine.timeSaleEndDate} 남음</TimeAgo>
           </Right>
         </Wrap>
       ))}
@@ -116,7 +116,7 @@ const Original = styled.div`
 `;
 
 const TimeAgo = styled.div`
-  width: 90px;
+  width: fit-content;
   background-color: #ff0045;
   color: #fff;
   border-radius: 2px;
