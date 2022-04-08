@@ -1,29 +1,25 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import dayjs from 'dayjs';
 
 import IconClock from 'assets/icon-time.svg';
 import { useInterval } from 'hooks/useInterval';
-import { addZero } from 'utils';
+import { addZero, remainTime } from 'utils';
 
 interface ICountdown {
   endDate: string;
 }
 
 export default function Countdown({ endDate }: ICountdown) {
-  const now = dayjs();
-  const [countDown, setCountDown] = useState({ hour: 0, minute: 0, second: 0 });
+  const end = new Date(endDate).getTime();
+  const now = new Date().getTime();
+  const [countDown, setCountDown] = useState(end - now);
 
   useInterval(() => {
-    setCountDown({
-      hour: Math.abs(now.diff(dayjs(endDate), 'hour')),
-      minute: 59 - now.get('minute'),
-      second: 59 - now.get('second'),
-    });
+    setCountDown(end - new Date().getTime());
   }, 1000);
 
-  const { hour, minute, second } = countDown;
-  const isExpired = now.isAfter(endDate);
+  const [hours, minutes, seconds] = remainTime(countDown);
+  const isExpired = end - now <= 0;
 
   if (isExpired) {
     return <div>만료</div>;
@@ -33,7 +29,7 @@ export default function Countdown({ endDate }: ICountdown) {
     <Container>
       <Icon src={IconClock} alt="남은시간" />
       <span>
-        {addZero(hour)}:{addZero(minute)}:{addZero(second)} 남음
+        {addZero(hours)}:{addZero(minutes)}:{addZero(seconds)} 남음
       </span>
     </Container>
   );
