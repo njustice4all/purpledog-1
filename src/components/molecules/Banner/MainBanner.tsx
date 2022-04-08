@@ -9,7 +9,7 @@ import { RootState } from 'modules/rootState';
 
 export default function MainBanner() {
   const dispatch = useDispatch();
-  const { isFetching, MAIN_TOP } = useSelector((state: RootState) => state.banner);
+  const { MAIN_TOP } = useSelector((state: RootState) => state.banner);
 
   useEffect(() => {
     dispatch(actionGetBanner.request({ bannerCodeId: 'MAIN_TOP' }));

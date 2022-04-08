@@ -52,6 +52,7 @@ const Content = styled.div`
   border-top-right-radius: 15px;
   padding: 30px 15px;
   transform: translateY(-15px);
+  padding-bottom: 100px;
 `;
 
 const SubBannerWrapper = styled.div`

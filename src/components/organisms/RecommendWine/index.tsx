@@ -12,7 +12,7 @@ import CountryLabel from 'components/atoms/CountryLabel';
 export default function RecommendWine() {
   const dispatch = useDispatch();
   const text = useSelector((state: RootState) => state.text);
-  const { isFetching, subscriptionWineRecommend } = useSelector((state: RootState) => state.wine);
+  const { subscriptionWineRecommend } = useSelector((state: RootState) => state.wine);
 
   useEffect(() => {
     dispatch(actionGetWine.request({ name: 'subscriptionWineRecommend' }));
@@ -26,6 +26,7 @@ export default function RecommendWine() {
       <Title>{title ? title.content : '...'}</Title>
       <Description>{description ? description.content : '...'}</Description>
       <Wrapper>
+        {subscriptionWineRecommend.length === 0 && <Empty />}
         <Flicking
           bound
           align={{ camera: '3.5%', panel: '10px' }}
@@ -113,4 +114,11 @@ const Original = styled.div`
   color: #cbcbcb;
   text-decoration: line-through;
   margin-left: 5px;
+`;
+
+const Empty = styled.div`
+  width: 100%;
+  height: 265px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
 `;
