@@ -33,7 +33,7 @@ export default function RecommendWine() {
           className="RecommendWine-viewport"
         >
           {subscriptionWineRecommend.map(
-            ({ salesPrice, englishName, countryName, thumbnailImageUrl }, idx) => (
+            ({ salesPrice, productOnSales, englishName, countryName, thumbnailImageUrl }, idx) => (
               <Card key={idx}>
                 <Box>
                   <Image src={thumbnailImageUrl} />
@@ -42,11 +42,13 @@ export default function RecommendWine() {
                   <CountryLabel countryName={countryName} type="제로와인" />
                 </Top>
                 <Name>{englishName}</Name>
-                <Price>39,500원</Price>
-                <Discount>
-                  <Rate>12%</Rate>
-                  <Original>45,500원</Original>
-                </Discount>
+                <Price>39,000원</Price>
+                {productOnSales && (
+                  <Discount>
+                    <Rate>12%</Rate>
+                    <Original>45,500원</Original>
+                  </Discount>
+                )}
               </Card>
             )
           )}
